@@ -2,12 +2,31 @@
 {% load staticfiles %}
 <html>
   <head>
+
     <meta charset="utf-8">
-    <title>Django Guitar Page</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <title>Django Level 2</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}"/>
   </head>
   <body>
-    <h1>Hi this is a picture of Django</h1>
-    <img src="{% static "images/DjangoLitchen.jpg" %}" alt= "did not show"/>
+    <h1>Hi welcome to Django</h1>
+    <h2>Here are your records</h2>
+    <div >
+      {% if access_records %}
+      <table class="djangotwo">
+        <thead>
+          <th>Site Name</th>
+          <th>Data Accessed</th>
+        </thead>
+        {% for acc in access_records%}
+        <tr>
+          <td>{{acc.name}}</td>
+          <td>{{acc.date}}</td>
+        </tr>
+        {%endfor%}
+      </table>
+      {%else%}
+        <p>NO ACCESS RECORDS FOUND</p>
+      {%endif%}
+    </div>
   </body>
 </html>

@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from second_app.models import User
 # Create your views here.
 
-def help(request):
-    my_dir = {'insert_help':'Here is the help page!'}
-    return render(request, 'second_app/help.html', context=my_dir)
+def index(request):
+    return render(request, 'second_app/index.html')
+
+def users(request):
+
+    user_list = User.objects.order_by('first_name')
+    user_dict = {'users':user_list}
+    return render(request,'second_app/users.html',context=user_dict)
